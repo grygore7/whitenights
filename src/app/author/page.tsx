@@ -17,14 +17,16 @@ export default function AuthorPage() {
       <Card className="overflow-hidden shadow-xl rounded-lg mb-12">
         <div className="md:flex">
           <div className="md:w-2/5 flex-shrink-0 bg-secondary/30 flex items-center justify-center p-4 md:p-8 relative min-h-[350px] md:min-h-0">
-            <Image
-              src="https://videos.openai.com/vg-assets/assets%2Ftask_01jtmxjd4besk8w0pprb3avwnz%2F1746606384_img_2.webp?st=2025-05-09T14%3A58%3A43Z&se=2025-05-15T15%3A58%3A43Z&sks=b&skt=2025-05-09T14%3A58%3A43Z&ske=2025-05-15T15%3A58%3A43Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=RLw3TKgcmFRea3HGMDYg0GOpznq6lFdzwNByZuXKYb4%3D&az=oaivgprodscus"
-              alt="Ritratto di Fëdor Dostoevskij"
-              fill
-              sizes="(max-width: 768px) 100vw, 40vw"
-              className="object-contain rounded-md shadow-md"
-              data-ai-hint="stylized dostoevsky portrait"
-            />
+            <div className="relative w-full h-[700px]">
+              <Image
+                src="https://videos.openai.com/vg-assets/assets%2Ftask_01jtmxjd4besk8w0pprb3avwnz%2F1746606384_img_2.webp?st=2025-05-09T14%3A58%3A43Z&se=2025-05-15T15%3A58%3A43Z&sks=b&skt=2025-05-09T14%3A58%3A43Z&ske=2025-05-15T15%3A58%3A43Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=RLw3TKgcmFRea3HGMDYg0GOpznq6lFdzwNByZuXKYb4%3D&az=oaivgprodscus"
+                alt="Ritratto di Fëdor Dostoevskij"
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-contain rounded-md shadow-md"
+                data-ai-hint="stylized dostoevsky portrait"
+              />
+            </div>
           </div>
           <div className="md:w-3/5">
             <CardHeader className="pb-4">
@@ -48,7 +50,7 @@ export default function AuthorPage() {
                   San Pietroburgo negli anni '40 del XIX secolo non era solo la sfarzosa capitale imperiale, ma anche un paesaggio letterario vibrante e spesso contraddittorio. Le prime opere di Dostoevskij, inclusa "Le Notti Bianche," emersero nel contesto della "Scuola Naturale" della letteratura russa, che si focalizzava su rappresentazioni realistiche della vita urbana e delle sue miserie. Tuttavia, Dostoevskij seppe fondere questo realismo con un profondo sentimentalismo e una penetrante profondità psicologica che lo distinsero fin da subito. L'epoca sotto lo Zar Nicola I fu caratterizzata da una forte repressione politica e censura, ma paradossalmente anche da un intenso fermento intellettuale, con accesi dibattiti sull'identità e il futuro della Russia, in particolare tra Occidentalisti e Slavofili.
                 </p>
               </div>
-               <Separator />
+              <Separator />
               <div>
                 <h3 className="font-bold font-lato text-xl mb-2 text-foreground">"Le Notti Bianche" nell'Opera Complessiva di Dostoevskij</h3>
                 <p className="text-muted-foreground">
@@ -59,13 +61,11 @@ export default function AuthorPage() {
           </div>
         </div>
       </Card>
-        <div className="mt-12 text-center">
-            <Button asChild size="lg">
-                <Link href="/story">Approfondisci l'Opera nel Contesto</Link>
-            </Button>
-        </div>
+      <div className="mt-12 text-center">
+        <Button asChild size="lg">
+          <Link href="/story">Approfondisci l'Opera nel Contesto</Link>
+        </Button>
+      </div>
     </div>
   );
 }
-
-    

@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Heart, User, Moon, Sparkles } from 'lucide-react';
@@ -102,8 +101,8 @@ export default function Home() {
         </div>
       </section>
 
-       {/* Placeholder Image Section - Can be replaced with Dostoevsky portrait or original art */}
-       <section className="w-full py-16 md:py-24 bg-secondary">
+      {/* Placeholder Image Section - Can be replaced with Dostoevsky portrait or original art */}
+      <section className="w-full py-16 md:py-24 bg-secondary">
         <div className="container mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center gap-8">
           <div className="md:w-1/3">
             <Image
@@ -116,20 +115,36 @@ export default function Home() {
             />
           </div>
           <div className="md:w-2/3">
-             <h2 className="text-3xl md:text-4xl font-playfair-display font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-playfair-display font-bold mb-6">
               Un Racconto Intramontabile
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              "Le Notti Bianche" rimane una delle opere giovanili più amate di Dostoevskij, una toccante esplorazione della solitudine, del desiderio e della natura effimera dei legami umani, ambientata sullo sfondo delle incantevoli notti bianche di San Pietroburgo. Il suo delicato equilibrio tra speranza e malinconia continua a risuonare con i lettori di oggi, anticipando la profondità psicologica dei suoi capolavori successivi.
+              "Le Notti Bianche" rimane una delle opere giovanili più amate di Dostoevskij, una toccante esplorazione della solitudine e del sogno, in un mondo di speranza e delusione. La bellezza della narrazione ti accompagnerà in un viaggio senza tempo attraverso l'animo umano.
             </p>
-             <Button asChild size="lg" className="mt-6 bg-primary text-primary-foreground hover:bg-primary/90">
-              <Link href="/author">Scopri l'Autore</Link>
-            </Button>
           </div>
         </div>
       </section>
+
+      {/* Footer Section */}
+      <footer className="w-full bg-background py-12 mt-16">
+        <div className="container mx-auto px-4 md:px-6 text-center text-muted-foreground">
+          <p className="text-lg mb-4">
+            © 2025 Le Notti Bianche - Fëdor Dostoevskij. Tutti i diritti riservati.
+          </p>
+          <p className="text-sm mb-4">
+            Un'opera giovanile di Fëdor Dostoevskij. Questa edizione è offerta per scopi educativi e culturali.
+          </p>
+          <div>
+            <Link
+              href="https://www.gutenberg.org/ebooks/36034" // Link al PDF del libro su Gutenberg
+              target="_blank"
+              className="text-accent hover:underline text-lg"
+            >
+              Leggi il Libro Completo (PDF)
+            </Link>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
-
-    
