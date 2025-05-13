@@ -3,7 +3,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BookOpen, Home, Users, MessageSquare, Info, Brain, MessageCircle } from 'lucide-react';
+import { BookOpen, Home, Users, MessageSquare, Info, Brain, MessageCircle, Puzzle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
   Sheet,
@@ -11,6 +11,7 @@ import {
   SheetTrigger,
   SheetHeader,
   SheetTitle,
+  SheetDescription, // Added for accessibility
 } from "@/components/ui/sheet"
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
@@ -25,6 +26,7 @@ const navItems = [
   { href: '/curiosities', label: 'Curiosità', icon: MessageSquare },
   { href: '/explore', label: 'Esplora', icon: Brain },
   { href: '/chat', label: 'Chatta', icon: MessageCircle },
+  { href: '/quiz', label: 'Quiz', icon: Puzzle },
 ];
 
 export function Header() {
@@ -76,14 +78,15 @@ export function Header() {
                 <span className="sr-only">Apri menu di navigazione</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full max-w-xs sm:max-w-sm p-0"> {/* Removed default padding */}
+            <SheetContent side="right" className="w-full max-w-xs sm:max-w-sm p-0">
                <div className="flex flex-col h-full">
-                 <SheetHeader className="p-4 border-b"> {/* Added SheetHeader for accessibility */}
-                    <SheetTitle asChild>
+                 <SheetHeader className="p-4 border-b">
+                    <SheetTitle>
                         <Link href="/" onClick={closeSheet} className="font-playfair-display text-lg font-bold">
                         Notti Bianche
                         </Link>
                     </SheetTitle>
+                    <SheetDescription className="sr-only">Menu di navigazione principale</SheetDescription>
                  </SheetHeader>
                 <nav className="flex flex-col space-y-2 p-4 flex-grow">
                    <NavLinks isMobile={true}/>
@@ -96,4 +99,3 @@ export function Header() {
     </header>
   );
 }
-
