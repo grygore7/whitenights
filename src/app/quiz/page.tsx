@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
-import { AlertCircle, CheckCircle, RotateCcw } from 'lucide-react';
+import { AlertCircle, CheckCircle, RotateCcw, Brain } from 'lucide-react'; // Added Brain for consistency, though not used directly here
 
 interface Question {
   id: number;
@@ -49,6 +49,19 @@ const quizQuestions: Question[] = [
   },
 ];
 
+const getResultMessage = (score: number, totalQuestions: number): string => {
+  const percentage = (score / totalQuestions) * 100;
+  if (percentage === 100) {
+    return "Congratulazioni! Conosci \"Le Notti Bianche\" alla perfezione!";
+  } else if (percentage >= 70) {
+    return "Ottimo lavoro! Hai una buona conoscenza della storia.";
+  } else if (percentage >= 40) {
+    return "Non male! Continua a esplorare per scoprire di più.";
+  } else {
+    return "Sembra che ci sia ancora molto da scoprire su questa affascinante storia. Riprova!";
+  }
+};
+
 export default function QuizPage() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number | null>>({});
@@ -89,6 +102,7 @@ export default function QuizPage() {
   const progressPercentage = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
 
   if (quizCompleted) {
+    const resultMessage = getResultMessage(score, quizQuestions.length);
     return (
       <div className="container mx-auto px-4 md:px-6 py-12 md:py-16">
         <Card className="shadow-lg max-w-2xl mx-auto">
@@ -98,10 +112,11 @@ export default function QuizPage() {
               {score >= quizQuestions.length / 2 ? <CheckCircle className="w-16 h-16" /> : <AlertCircle className="w-16 h-16" />}
             </div>
           </CardHeader>
-          <CardContent className="text-center">
-            <p className="text-xl mb-4">
+          <CardContent className="text-center space-y-4">
+            <p className="text-xl">
               Il tuo punteggio è: <span className="font-bold">{score}</span> su <span className="font-bold">{quizQuestions.length}</span>.
             </p>
+            <p className="text-muted-foreground">{resultMessage}</p>
             <Button onClick={handleRetryQuiz} size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
               <RotateCcw className="mr-2 h-5 w-5" />
               Riprova il Quiz
@@ -127,6 +142,7 @@ export default function QuizPage() {
           <div className="space-y-6">
             <h2 className="text-xl font-semibold font-lato">{currentQuestion.text}</h2>
             <RadioGroup
+              key={currentQuestion.id} // Force re-render on question change
               value={selectedAnswers[currentQuestion.id]?.toString()}
               onValueChange={(value) => handleAnswerSelect(currentQuestion.id, parseInt(value))}
               className="space-y-3"
@@ -154,3 +170,4 @@ export default function QuizPage() {
     </div>
   );
 }
+
