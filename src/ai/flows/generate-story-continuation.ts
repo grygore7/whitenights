@@ -1,4 +1,4 @@
- 'use server';
+ 'use client';
 
 /**
  * @fileOverview This file defines a Genkit flow for generating alternative scenarios or continuations of the "Le Notti Bianche" story.
