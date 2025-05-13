@@ -1,4 +1,4 @@
-'use server';
+'use client';
 /**
  * @fileOverview A Genkit flow for chatting with characters from "Le Notti Bianche".
  *
