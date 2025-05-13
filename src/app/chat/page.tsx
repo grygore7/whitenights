@@ -32,12 +32,12 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const characterImageMap: Record<CharacterEnum, string> = {
-  'Il Sognatore': 'https://picsum.photos/seed/sognatorechat/100/100?grayscale',
-  'Nastenka': 'https://picsum.photos/seed/nastenkachat/100/100',
+  'Il Sognatore': 'https://videos.openai.com/vg-assets/assets%2Ftask_01jttsefr1fzfv9ejtz2jnpm2a%2F1746803393_img_0.webp?st=2025-05-09T14%3A56%3A28Z&se=2025-05-15T15%3A56%3A28Z&sks=b&skt=2025-05-09T14%3A56%3A28Z&ske=2025-05-15T15%3A56%3A28Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=Lg5y3YWY1n%2FnNjog1%2F3BHOGeNg9CmKb3SwURmgrNjeE%3D&az=oaivgprodscus',
+  'Nastenka': 'https://videos.openai.com/vg-assets/assets%2Ftask_01jttsjf6qe8xs7s39yqmbkzdd%2F1746803518_img_1.webp?st=2025-05-09T14%3A58%3A43Z&se=2025-05-15T15%3A58%3A43Z&sks=b&skt=2025-05-09T14%3A58%3A43Z&ske=2025-05-15T15%3A58%3A43Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=iI5xLoagtivxf9%2FhkCDLBYOAb8N5qS6nvMTLO0JukKY%3D&az=oaivgprodscus',
 };
 
 const characterImageHintMap: Record<CharacterEnum, string> = {
-    'Il Sognatore': 'lonely man silhouette window',
+    'Il Sognatore': 'dreamy saint petersburg night canal',
     'Nastenka': 'young woman thoughtful pensive',
 };
 
@@ -222,7 +222,7 @@ export default function ChatPage() {
                 />
                 <Button type="submit" disabled={isLoading || !selectedCharacter || !form.formState.isValid} size="icon" className="h-10 w-10 flex-shrink-0">
                   {isLoading ? (
-                    <Loader2 className="h-5 w-5 animate-spin" />
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                   ) : (
                      <Send className="h-5 w-5" />
                   )}
