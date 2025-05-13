@@ -1,9 +1,12 @@
 
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { PersonalityTest } from '@/components/personality-test'; // Import the new component
+import { Brain } from 'lucide-react';
 
 const characters = [
   {
@@ -101,13 +104,17 @@ export default function CharactersPage() {
           </Card>
         ))}
       </div>
-        <div className="mt-16 text-center">
+        <div className="mt-16 text-center flex flex-col sm:flex-row justify-center items-center gap-4">
             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
                 <Link href="/chat">Chatta con i Personaggi</Link>
             </Button>
+            <PersonalityTest>
+                 <Button size="lg" variant="outline" className="border-accent text-accent hover:bg-accent/10 hover:text-accent">
+                    <Brain className="mr-2 h-5 w-5" />
+                    Fai il Test della Personalità
+                </Button>
+            </PersonalityTest>
         </div>
     </div>
   );
 }
-
-    
