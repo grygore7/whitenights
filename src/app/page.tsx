@@ -21,7 +21,7 @@ export default function Home() {
           data-ai-hint="dreamy saint petersburg night canal"
         />
         <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-playfair-display font-bold mb-4 text-accent">
+          <h1 className="text-4xl md:text-6xl font-playfair-display font-bold mb-4 text-white">
             Le Notti Bianche
           </h1>
           <p className="text-xl md:text-2xl font-cormorant-garamond text-background/90 mb-8">
