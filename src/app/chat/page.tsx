@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -47,7 +48,9 @@ export default function ChatPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedCharacter, setSelectedCharacter] = useState<CharacterEnum | null>(null);
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null); // Ref for auto-scrolling
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -57,14 +60,9 @@ export default function ChatPage() {
     },
   });
 
- useEffect(() => {
-    if (scrollAreaRef.current) {
-      setTimeout(() => {
-        if (scrollAreaRef.current) {
-            scrollAreaRef.current.scrollTo({ top: scrollAreaRef.current.scrollHeight, behavior: 'smooth' });
-        }
-      }, 100);
-    }
+  useEffect(() => {
+    // Auto-scroll to the latest message
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
   }, [chatHistory]);
 
 
@@ -74,6 +72,12 @@ export default function ChatPage() {
     form.setValue('character', character);
     setChatHistory([]); 
     setError(null);
+    // Focus textarea when character is selected and form is ready
+    setTimeout(() => {
+        if (textareaRef.current) {
+            textareaRef.current.focus();
+        }
+    }, 50);
   };
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
@@ -81,13 +85,13 @@ export default function ChatPage() {
         setError("Seleziona un personaggio per iniziare la chat.");
         return;
     }
-    setIsLoading(true);
-    setError(null);
-
+    
     const userMessage: ChatMessage = { role: 'user', content: data.message };
     setChatHistory(prev => [...prev, userMessage]);
     form.resetField('message'); 
 
+    setIsLoading(true);
+    setError(null);
 
     try {
       const input: ChatWithCharacterInput = {
@@ -107,6 +111,11 @@ export default function ChatPage() {
 
     } finally {
       setIsLoading(false);
+      setTimeout(() => {
+        if (textareaRef.current) {
+            textareaRef.current.focus();
+        }
+      }, 50); 
     }
   };
 
@@ -121,10 +130,10 @@ export default function ChatPage() {
         </p>
       </div>
 
-      <Form {...form}>
-        <Card className="shadow-lg flex-grow flex flex-col overflow-hidden">
-          <CardHeader>
-            <CardTitle className="font-cormorant-garamond text-2xl">Seleziona un Personaggio</CardTitle>
+      <Card className="shadow-lg flex-grow flex flex-col overflow-hidden">
+        <CardHeader>
+          <CardTitle className="font-cormorant-garamond text-2xl">Seleziona un Personaggio</CardTitle>
+          <Form {...form}> {/* Form provider should wrap the FormField */}
             <FormField
               control={form.control}
               name="character"
@@ -145,54 +154,57 @@ export default function ChatPage() {
                 </FormItem>
               )}
             />
-          </CardHeader>
+          </Form>
+        </CardHeader>
 
-          <ScrollArea className="flex-grow p-4 bg-secondary/20" ref={scrollAreaRef}>
-            <CardContent className="space-y-4">
-              {chatHistory.length === 0 && selectedCharacter && (
-                <div className="text-center text-muted-foreground py-8">
-                  <Bot className="mx-auto h-12 w-12 mb-2" />
-                  Inizia a chattare con {selectedCharacter}!
-                </div>
-              )}
-               {chatHistory.length === 0 && !selectedCharacter && (
-                <div className="text-center text-muted-foreground py-8">
-                  <MessageSquare className="mx-auto h-12 w-12 mb-2" />
-                  Seleziona un personaggio per iniziare la chat.
-                </div>
-              )}
-              {chatHistory.map((chat, index) => (
+        <ScrollArea className="flex-grow p-4 bg-secondary/20">
+          <CardContent className="space-y-4">
+            {chatHistory.length === 0 && selectedCharacter && (
+              <div className="text-center text-muted-foreground py-8">
+                <Bot className="mx-auto h-12 w-12 mb-2" />
+                Inizia a chattare con {selectedCharacter}!
+              </div>
+            )}
+             {chatHistory.length === 0 && !selectedCharacter && (
+              <div className="text-center text-muted-foreground py-8">
+                <MessageSquare className="mx-auto h-12 w-12 mb-2" />
+                Seleziona un personaggio per iniziare la chat.
+              </div>
+            )}
+            {chatHistory.map((chat, index) => (
+              <div
+                key={index}
+                className={`flex items-end gap-2 ${chat.role === 'user' ? 'justify-end' : 'justify-start'}`}
+              >
+                {chat.role === 'model' && selectedCharacter && (
+                   <Avatar className="h-8 w-8">
+                    <AvatarImage src={characterImageMap[selectedCharacter]} alt={selectedCharacter} data-ai-hint={characterImageHintMap[selectedCharacter]} />
+                    <AvatarFallback>{selectedCharacter.substring(0,1)}</AvatarFallback>
+                  </Avatar>
+                )}
                 <div
-                  key={index}
-                  className={`flex items-end gap-2 ${chat.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                  className={`max-w-[70%] p-3 rounded-lg shadow ${
+                    chat.role === 'user'
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-card text-card-foreground border'
+                  }`}
                 >
-                  {chat.role === 'model' && selectedCharacter && (
-                     <Avatar className="h-8 w-8">
-                      <AvatarImage src={characterImageMap[selectedCharacter]} alt={selectedCharacter} data-ai-hint={characterImageHintMap[selectedCharacter]} />
-                      <AvatarFallback>{selectedCharacter.substring(0,1)}</AvatarFallback>
-                    </Avatar>
-                  )}
-                  <div
-                    className={`max-w-[70%] p-3 rounded-lg shadow ${
-                      chat.role === 'user'
-                        ? 'bg-primary text-primary-foreground'
-                        : 'bg-card text-card-foreground border'
-                    }`}
-                  >
-                    <p className="text-sm whitespace-pre-wrap">{chat.content}</p>
-                  </div>
-                   {chat.role === 'user' && (
-                     <Avatar className="h-8 w-8">
-                       <AvatarFallback><User size={18}/></AvatarFallback>
-                     </Avatar>
-                  )}
+                  <p className="text-sm whitespace-pre-wrap">{chat.content}</p>
                 </div>
-              ))}
-            </CardContent>
-          </ScrollArea>
+                 {chat.role === 'user' && (
+                   <Avatar className="h-8 w-8">
+                     <AvatarFallback><User size={18}/></AvatarFallback>
+                   </Avatar>
+                )}
+              </div>
+            ))}
+            <div ref={messagesEndRef} /> {/* Element to scroll to */}
+          </CardContent>
+        </ScrollArea>
 
-          {selectedCharacter && (
-            <div className="p-4 border-t">
+        {selectedCharacter && (
+          <div className="p-4 border-t">
+            <Form {...form}> {/* Form provider should wrap the FormField and submit button */}
               <form onSubmit={form.handleSubmit(onSubmit)} className="flex items-start gap-2">
                 <FormField
                   control={form.control}
@@ -201,10 +213,11 @@ export default function ChatPage() {
                     <FormItem className="flex-grow">
                       <FormControl>
                         <Textarea
+                          ref={textareaRef} // Assign ref to Textarea
                           placeholder={`Scrivi un messaggio a ${selectedCharacter}...`}
                           className="min-h-[40px] resize-none text-sm"
                           {...field}
-                          disabled={isLoading || !selectedCharacter}
+                          disabled={isLoading} // Simplified disabled logic
                           rows={1}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter' && !e.shiftKey) {
@@ -220,19 +233,19 @@ export default function ChatPage() {
                     </FormItem>
                   )}
                 />
-                <Button type="submit" disabled={isLoading || !selectedCharacter || !form.formState.isValid} size="icon" className="h-10 w-10 flex-shrink-0">
+                <Button type="submit" disabled={isLoading || !form.formState.isValid} size="icon" className="h-10 w-10 flex-shrink-0">
                   {isLoading ? (
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    <Loader2 className="h-4 w-4 animate-spin" /> 
                   ) : (
                      <Send className="h-5 w-5" />
                   )}
                   <span className="sr-only">Invia</span>
                 </Button>
               </form>
-            </div>
-          )}
-        </Card>
-      </Form>
+            </Form>
+          </div>
+        )}
+      </Card>
 
       {error && !isLoading && ( 
          <Alert variant="destructive" className="mt-4">
@@ -243,3 +256,4 @@ export default function ChatPage() {
     </div>
   );
 }
+    
