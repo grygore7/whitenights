@@ -12,7 +12,7 @@ export default function Home() {
         <div
           className="absolute inset-0 z-0"
           style={{
-            backgroundImage: `url(https://videos.openai.com/vg-assets/assets%2Ftask_01jttssk17edb9515ekr26gkbn%2F1746803753_img_0.webp?st=2025-05-09T14%3A58%3A43Z&se=2025-05-15T15%3A58%3A43Z&sks=b&skt=2025-05-09T14%3A58%3A43Z&ske=2025-05-15T15%3A58%3A43Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=FZFIjJq3%2F9ZESTbnWYqNR0%2FTICde%2FjsAiCTOOy3TQYo%3D&az=oaivgprodscus)`, // Changed to static seed
+            backgroundImage: `url(https://videos.openai.com/vg-assets/assets%2Ftask_01jttssk17edb9515ekr26gkbn%2F1746803753_img_3.webp?st=2025-05-17T08%3A03%3A18Z&se=2025-05-23T09%3A03%3A18Z&sks=b&skt=2025-05-17T08%3A03%3A18Z&ske=2025-05-23T09%3A03%3A18Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=3jN3mkax2d7I0M2PeUDs31UGhmzLRY2ko5gqhVSu5Qk%3D&az=oaivgprodscus)`, // Changed to static seed
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed',
