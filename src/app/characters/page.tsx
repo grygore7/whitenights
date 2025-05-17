@@ -11,7 +11,7 @@ import { Brain } from 'lucide-react';
 const characters = [
   {
     name: 'Il Sognatore',
-    image: 'https://videos.openai.com/vg-assets/assets%2Ftask_01jttsefr1fzfv9ejtz2jnpm2a%2F1746803393_img_0.webp?st=2025-05-09T14%3A56%3A28Z&se=2025-05-15T15%3A56%3A28Z&sks=b&skt=2025-05-09T14%3A56%3A28Z&ske=2025-05-15T15%3A56%3A28Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=Lg5y3YWY1n%2FnNjog1%2F3BHOGeNg9CmKb3SwURmgrNjeE%3D&az=oaivgprodscus', // Swapped image
+    image: 'https://videos.openai.com/vg-assets/assets%2Ftask_01jttsefr1fzfv9ejtz2jnpm2a%2F1746803393_img_0.webp?st=2025-05-17T08%3A22%3A53Z&se=2025-05-23T09%3A22%3A53Z&sks=b&skt=2025-05-17T08%3A22%3A53Z&ske=2025-05-23T09%3A22%3A53Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=XI5AIuSpidsm0qJ6nEAltgzasv8zRNviU6tjmUtTv1Q%3D&az=oaivgprodscus', // Swapped image
     imageHint: "dreamy saint petersburg night canal",
     description: 'Il narratore anonimo e protagonista, archetipo del sognatore romantico. È profondamente introverso, intellettuale e si sente alienato dalla frenetica realtà di San Pietroburgo. Vive in gran parte nella sua immaginazione, trovando conforto nelle fantasie e osservando la vita piuttosto che parteciparvi.',
     psychology: 'Caratterizzato da un\'intensa solitudine, un desiderio struggente di connessione umana e una tendenza a idealizzare l\'amore e le relazioni. È incline all\'autoanalisi e a una malinconia poetica. La sua sensibilità lo rende vulnerabile ma anche capace di profonda empatia.',
@@ -26,7 +26,7 @@ const characters = [
   },
   {
     name: 'Nasten\'ka',
-    image: 'https://videos.openai.com/vg-assets/assets%2Ftask_01jttsjf6qe8xs7s39yqmbkzdd%2F1746803518_img_1.webp?st=2025-05-09T14%3A58%3A43Z&se=2025-05-15T15%3A58%3A43Z&sks=b&skt=2025-05-09T14%3A58%3A43Z&ske=2025-05-15T15%3A58%3A43Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=iI5xLoagtivxf9%2FhkCDLBYOAb8N5qS6nvMTLO0JukKY%3D&az=oaivgprodscus',
+    image: 'https://videos.openai.com/vg-assets/assets%2Ftask_01jttsjf6qe8xs7s39yqmbkzdd%2F1746803518_img_1.webp?st=2025-05-17T08%3A22%3A53Z&se=2025-05-23T09%3A22%3A53Z&sks=b&skt=2025-05-17T08%3A22%3A53Z&ske=2025-05-23T09%3A22%3A53Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=q668sn%2BuRMld5%2FlmfrHmE8eY6SkHku7JRtKsI6QyFfk%3D&az=oaivgprodscus',
     imageHint: "young woman thoughtful pensive",
     description: 'Una giovane donna, apparentemente ingenua e vivace, che il Sognatore incontra vicino al canale. Vive una vita protetta con la nonna cieca ed è coinvolta in un toccante dilemma emotivo, in attesa del ritorno del suo amore.',
     psychology: 'Appare innocente e vulnerabile, ma possiede anche un notevole grado di pragmatismo e forza interiore. È vivace ed emotivamente espressiva, ma porta con sé una corrente sotterranea di tristezza e ansia dovuta alla sua situazione. È combattuta tra l\'amore idealizzato per l\'inquilino assente e l\'affetto reale e immediato offerto dal Sognatore.',
