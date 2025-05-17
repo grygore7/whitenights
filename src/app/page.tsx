@@ -106,7 +106,7 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center gap-8">
           <div className="md:w-1/3">
             <Image
-              src="https://videos.openai.com/vg-assets/assets%2Ftask_01jtmxjd4besk8w0pprb3avwnz%2F1746606384_img_2.webp?st=2025-05-09T14%3A59%3A24Z&se=2025-05-15T15%3A59%3A24Z&sks=b&skt=2025-05-09T14%3A59%3A24Z&ske=2025-05-15T15%3A59%3A24Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=38sRQlzJ1O5TXFWV70YWG53XRHdC1c72CJ4FG0aSJRM%3D&az=oaivgprodscus" // Changed to static seed
+              src="https://videos.openai.com/vg-assets/assets%2Ftask_01jva56eq3fwmt2ypv01qewf1n%2F1747319030_img_2.webp?st=2025-05-17T08%3A22%3A53Z&se=2025-05-23T09%3A22%3A53Z&sks=b&skt=2025-05-17T08%3A22%3A53Z&ske=2025-05-23T09%3A22%3A53Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=jJG2KkqodvKT9qM9CulgW0KeVUXHME5nXUPJSSpPYZM%3D&az=oaivgprodscus" // Changed to static seed
               alt="Ritratto stilizzato di Dostoevskij o illustrazione artistica"
               width={400}
               height={500}
