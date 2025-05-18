@@ -1,12 +1,14 @@
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { BookOpen, Users, Landmark, Palette } from 'lucide-react';
+import { BookOpen, Users, Landmark, Palette, Sparkles } from 'lucide-react';
+import Image from 'next/image';
 
 const storyContent = [
   {
@@ -39,161 +41,223 @@ const storyContent = [
 export default function StoryPage() {
   return (
     <div className="container mx-auto px-4 md:px-6 py-12 md:py-16">
-      <h1 className="text-4xl md:text-5xl font-playfair-display font-bold mb-4 text-center">
-        La Storia de Le Notti Bianche
-      </h1>
-      <p className="text-lg text-muted-foreground mb-12 text-center max-w-3xl mx-auto">
-        Segui la toccante narrazione del Sognatore e di Nastenka attraverso le luminose notti di San Pietroburgo, un racconto intessuto di solitudine, speranza e della natura effimera dei sogni.
-      </p>
+      <header className="text-center mb-12">
+        <h1 className="text-4xl md:text-5xl font-playfair-display font-bold mb-4">
+          La Storia de Le Notti Bianche
+        </h1>
+        <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+          Segui la toccante narrazione del Sognatore e di Nastenka attraverso le luminose notti di San Pietroburgo, un racconto intessuto di solitudine, speranza e della natura effimera dei sogni.
+        </p>
+      </header>
 
+      <div className="mb-12 flex justify-center">
+        <Image
+          src="https://videos.openai.com/vg-assets/assets%2Ftask_01jvhazx28ejjrz7x93jgv4zg6%2F1747559974_img_3.webp?st=2025-05-18T07%3A25%3A49Z&se=2025-05-24T08%3A25%3A49Z&sks=b&skt=2025-05-18T07%3A25%3A49Z&ske=2025-05-24T08%3A25%3A49Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=zQl0gkIm6kYwGb6wnTMU9ikIoIk%2Bud%2FZ9j%2B3FK2ZBok%3D&az=oaivgprodscus"
+          alt="Illustrazione evocativa de Le Notti Bianche"
+          width={800}
+          height={400}
+          className="rounded-lg shadow-xl object-cover"
+          data-ai-hint="dreamy cityscape river"
+          priority
+        />
+      </div>
+      
       <Card className="mb-12 shadow-lg">
         <CardHeader>
-           <CardTitle className="font-cormorant-garamond text-2xl">Introduzione Generale</CardTitle>
+           <CardTitle className="font-cormorant-garamond text-2xl md:text-3xl flex items-center">
+             <Sparkles className="w-7 h-7 mr-3 text-accent" />
+             Introduzione Generale e Riassunto Notturno
+            </CardTitle>
         </CardHeader>
         <CardContent>
-           <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
+           <p className="text-base md:text-lg leading-relaxed text-muted-foreground mb-6">
               "Le Notti Bianche", sottotitolato "Romanzo Sentimentale (Dalle Memorie di un Sognatore)", è un racconto giovanile di Fëdor Dostoevskij, pubblicato nel 1848. Si svolge nell'arco di quattro notti e un mattino durante il fenomeno unico di San Pietroburgo delle "notti bianche", quando il cielo non si oscura mai completamente. Racconta la storia di un giovane senza nome, il Sognatore, la cui intensa solitudine trova un temporaneo sollievo in un incontro casuale con una giovane donna, Nastenka.
            </p>
+           <Accordion type="single" collapsible className="w-full space-y-4">
+            {storyContent.map((night, index) => (
+              <AccordionItem value={`item-${index}`} key={index} className="border bg-secondary/30 rounded-lg px-4 shadow-sm hover:bg-secondary/50 transition-colors">
+                <AccordionTrigger className="text-xl md:text-2xl font-cormorant-garamond hover:no-underline text-left text-foreground/90">
+                  {night.title}
+                </AccordionTrigger>
+                <AccordionContent className="pt-4 space-y-4">
+                  <p className="text-base md:text-lg leading-relaxed text-muted-foreground">{night.summary}</p>
+                  <Separator />
+                  <blockquote className="border-l-4 border-accent pl-4 italic text-muted-foreground">
+                    "{night.quote}"
+                  </blockquote>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </CardContent>
       </Card>
 
-      <Accordion type="single" collapsible className="w-full space-y-4 mb-12">
-        {storyContent.map((night, index) => (
-          <AccordionItem value={`item-${index}`} key={index} className="border bg-secondary/50 rounded-lg px-4 shadow-sm">
-            <AccordionTrigger className="text-xl md:text-2xl font-cormorant-garamond hover:no-underline text-left">
-              {night.title}
-            </AccordionTrigger>
-            <AccordionContent className="pt-4 space-y-4">
-              <p className="text-base md:text-lg leading-relaxed text-muted-foreground">{night.summary}</p>
-              <Separator />
-              <blockquote className="border-l-4 border-accent pl-4 italic text-muted-foreground">
-                "{night.quote}"
-              </blockquote>
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
+      <Separator className="my-16" />
 
-      <Separator className="my-12" />
+      <h2 className="text-3xl md:text-4xl font-playfair-display font-bold mb-10 text-center">Approfondimenti sull'Opera</h2>
 
-      {/* Analisi Tematica Approfondita */}
-      <Card className="mb-12 shadow-lg">
-        <CardHeader>
-          <div className="flex items-center gap-3 mb-2">
-            <BookOpen className="w-8 h-8 text-accent flex-shrink-0" />
-            <CardTitle className="font-cormorant-garamond text-3xl">Analisi Tematica Approfondita</CardTitle>
-          </div>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div>
-            <h3 className="font-bold font-lato text-xl mb-2 text-foreground">Solitudine e Alienazione</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Il tema della solitudine pervade "Le Notti Bianche". Il Sognatore è l'epitome dell'individuo isolato nella grande città di San Pietroburgo, un'entità quasi spettrale che osserva la vita scorrere senza parteciparvi attivamente. La sua alienazione è autoimposta ma anche riflesso di una società che può marginalizzare gli animi sensibili. Nastenka, pur vivendo con la nonna, sperimenta una sua forma di isolamento, legata alla sua attesa e alle restrizioni della sua vita. Questo isolamento urbano è un leitmotiv in Dostoevskij, che troverà la sua espressione più estrema e amara nell' "Uomo del Sottosuolo". Il Sognatore, tuttavia, rappresenta una versione più romantica e meno cinica di questo archetipo, un'anima che anela alla connessione piuttosto che crogiolarsi nel proprio risentimento.
-            </p>
-          </div>
-          <Separator />
-          <div>
-            <h3 className="font-bold font-lato text-xl mb-2 text-foreground">Sogno vs. Realtà</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Il confine tra sogno e realtà è costantemente sfumato. Il Sognatore vive prevalentemente nel suo mondo interiore, popolato da fantasie elaborate che sostituiscono un'esistenza reale e appagante. Le "notti bianche" stesse, con la loro luce eterea che confonde il giorno e la notte, fungono da metafora perfetta per questo stato liminale. Nastenka, a sua volta, idealizza l'inquilino assente, nutrendo un amore basato più sull'attesa e sull'immaginazione che su una conoscenza profonda. L'incontro con Nastenka offre al Sognatore un assaggio intenso, seppur fugace, della realtà e dell'emozione autentica. La sua successiva "caduta" di nuovo nei sogni, sebbene arricchita da un ricordo reale, sottolinea la difficoltà di conciliare l'ideale con il prosaico, un tema caro a Dostoevskij che esplora la psiche umana e la sua necessità di evasione di fronte alla durezza dell'esistenza.
-            </p>
-          </div>
-          <Separator />
-          <div>
-            <h3 className="font-bold font-lato text-xl mb-2 text-foreground">Amore: Idealizzato, Effimero, Sacrificale</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              L'amore in "Le Notti Bianche" è presentato sotto diverse sfaccettature. Il Sognatore idealizza Nastenka quasi istantaneamente, vedendo in lei la personificazione dei suoi aneliti romantici. Nastenka, d'altro canto, è combattuta tra la lealtà verso un amore idealizzato (l'inquilino) e l'affetto tangibile e immediato offertole dal Sognatore. Il "momento di beatitudine" che il Sognatore sperimenta è emblematico dell'intensità e della transitorietà dell'amore nelle opere di Dostoevskij. La domanda implicita – se un singolo istante di felicità possa bastare per una vita intera – rimane aperta. L'accettazione finale del Sognatore del suo destino, con una malinconica gratitudine, ha quasi i tratti di un amore sacrificale, un'eco della capacità dostoevskiana di trovare nobiltà anche nella rinuncia.
-            </p>
-          </div>
-          <Separator />
-          <div>
-            <h3 className="font-bold font-lato text-xl mb-2 text-foreground">Sofferenza e Accettazione</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              La sofferenza è una compagna costante per i personaggi. La solitudine del Sognatore è una forma di sofferenza cronica, un dolore esistenziale. Nastenka soffre nell'attesa, nell'incertezza e, infine, nel dover fare una scelta che inevitabilmente ferirà qualcuno. Dostoevskij spesso vede nella sofferenza una via per una più profonda comprensione di sé e del mondo, sebbene in "Le Notti Bianche" essa si manifesti più come una toccante accettazione del destino che come un percorso verso la redenzione. Questa sofferenza è meno auto-inflitta e intellettualizzata rispetto a quella, per esempio, dell'Uomo del Sottosuolo, ma non meno sentita.
-            </p>
-          </div>
-        </CardContent>
-      </Card>
+      <div className="space-y-12">
+        {/* Analisi Tematica Approfondita */}
+        <Card className="shadow-xl rounded-lg overflow-hidden">
+          <CardHeader>
+            <div className="flex items-center gap-3 mb-2">
+              <BookOpen className="w-8 h-8 text-accent flex-shrink-0" />
+              <CardTitle className="font-cormorant-garamond text-2xl md:text-3xl">Analisi Tematica Approfondita</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="md:flex md:gap-6 items-start">
+              <div className="md:w-2/3 space-y-4">
+                <div>
+                  <h3 className="font-bold font-lato text-xl mb-2 text-foreground">Solitudine e Alienazione</h3>
+                  <p className="text-muted-foreground leading-relaxed text-base">
+                    Il tema della solitudine pervade "Le Notti Bianche". Il Sognatore è l'epitome dell'individuo isolato nella grande città di San Pietroburgo. La sua alienazione è autoimposta ma anche riflesso di una società che può marginalizzare gli animi sensibili. Nastenka, pur vivendo con la nonna, sperimenta una sua forma di isolamento.
+                  </p>
+                </div>
+                <Separator />
+                <div>
+                  <h3 className="font-bold font-lato text-xl mb-2 text-foreground">Sogno vs. Realtà</h3>
+                  <p className="text-muted-foreground leading-relaxed text-base">
+                    Il confine tra sogno e realtà è costantemente sfumato. Il Sognatore vive prevalentemente nel suo mondo interiore. Le "notti bianche" stesse fungono da metafora per questo stato liminale. L'incontro con Nastenka offre un assaggio intenso della realtà.
+                  </p>
+                </div>
+                <Separator />
+                <div>
+                  <h3 className="font-bold font-lato text-xl mb-2 text-foreground">Amore: Idealizzato, Effimero, Sacrificale</h3>
+                  <p className="text-muted-foreground leading-relaxed text-base">
+                    L'amore è presentato sotto diverse sfaccettature. Il Sognatore idealizza Nastenka. Nastenka è combattuta tra lealtà e affetto. Il "momento di beatitudine" è emblematico dell'intensità e della transitorietà dell'amore dostoevskiano.
+                  </p>
+                </div>
+                 <Separator />
+                <div>
+                  <h3 className="font-bold font-lato text-xl mb-2 text-foreground">Sofferenza e Accettazione</h3>
+                  <p className="text-muted-foreground leading-relaxed text-base">
+                    La sofferenza è una compagna costante. La solitudine del Sognatore è dolore esistenziale. Nastenka soffre nell'attesa e nella scelta. Dostoevskij spesso vede nella sofferenza una via per una più profonda comprensione.
+                  </p>
+                </div>
+              </div>
+              <div className="md:w-1/3 mt-6 md:mt-0">
+                <Image 
+                  src="https://videos.openai.com/vg-assets/assets%2Ftask_01jttt5x4xfq5r01t7n41ez9v6%2F1746804157_img_2.webp?st=2025-05-18T08%3A19%3A20Z&se=2025-05-24T09%3A19%3A20Z&sks=b&skt=2025-05-18T08%3A19%3A20Z&ske=2025-05-24T09%3A19%3A20Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=kvV%2B3LLKtt2QSPSpNs2y8fkk7fk%2FeV2hOlBQC%2BLfpaM%3D&az=oaivgprodscus" 
+                  alt="Immagine astratta per temi" 
+                  width={600} 
+                  height={400} 
+                  className="rounded-md shadow-md object-cover aspect-video"
+                  data-ai-hint="abstract book analysis" 
+                />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-      {/* Dinamiche ed Evoluzione dei Personaggi */}
-      <Card className="mb-12 shadow-lg">
-        <CardHeader>
-          <div className="flex items-center gap-3 mb-2">
-            <Users className="w-8 h-8 text-accent flex-shrink-0" />
-            <CardTitle className="font-cormorant-garamond text-3xl">Dinamiche ed Evoluzione dei Personaggi</CardTitle>
-          </div>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div>
-            <h3 className="font-bold font-lato text-xl mb-2 text-foreground">Il Sognatore e Nastenka: Un Incontro Trasformativo</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              L'incontro tra il Sognatore e Nastenka è il fulcro della narrazione. Due anime solitarie si trovano e, per quattro notti, creano un universo condiviso di confidenze e speranze. Il Sognatore, solitamente chiuso nel suo mondo interiore, si apre, rivelando la sua vulnerabilità e il suo profondo bisogno di connessione. Nastenka trova in lui un ascoltatore empatico e un conforto inatteso. La loro relazione si sviluppa rapidamente, passando dalla curiosità iniziale a una profonda intimità emotiva. Il culmine giunge con la confessione del Sognatore e la momentanea accettazione di Nastenka, subito infranta dal ritorno dell'inquilino. La scelta finale di Nastenka, pur pragmatica, non cancella l'autenticità del legame formatosi.
-            </p>
-          </div>
-          <Separator />
-          <div>
-            <h3 className="font-bold font-lato text-xl mb-2 text-foreground">Evoluzione del Sognatore</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Il Sognatore inizia la storia come un uomo completamente immerso nelle sue fantasie, quasi incapace di interagire con il mondo reale. L'incontro con Nastenka rappresenta una potente, seppur breve, irruzione della realtà nella sua vita. Egli sperimenta emozioni autentiche: speranza, amore, gioia e, infine, un profondo strazio. Sebbene ritorni alla sua solitudine, non è più lo stesso. Il "momento di beatitudine" vissuto non è più una semplice fantasia, ma un ricordo reale, un tesoro da custodire. Non si trasforma in un uomo d'azione, ma la sua capacità di sentire è stata risvegliata e arricchita. Questo lo distingue da una figura come l'Uomo del Sottosuolo, che rimane intrappolato in un circolo vizioso di alienazione e autoanalisi senza la catarsi, seppur malinconica, di un'autentica connessione umana.
-            </p>
-          </div>
-          <Separator />
-          <div>
-            <h3 className="font-bold font-lato text-xl mb-2 text-foreground">Evoluzione di Nastenka</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Nastenka appare inizialmente come una figura ansiosa, quasi eterea nella sua attesa, con un'aura di ingenuità ma anche di speranza. Trova nel Sognatore non solo un confidente ma anche una persona capace di offrirle un affetto sincero e disinteressato. Sviluppa per lui una profonda gratitudine e un affetto genuino, tanto da considerare per un momento un futuro diverso. Tuttavia, di fronte alla scelta tra l'amore idealizzato e a lungo atteso (l'inquilino) e l'affetto più recente ma altrettanto reale (il Sognatore), la sua lealtà al primo impegno e forse una visione più convenzionale della felicità prevalgono. La sua evoluzione sta nel confrontarsi con questa scelta difficile e nel prendere una decisione che, sebbene dolorosa per il Sognatore, è coerente con il suo personaggio e i suoi desideri.
-            </p>
-          </div>
-        </CardContent>
-      </Card>
+        {/* Dinamiche ed Evoluzione dei Personaggi */}
+        <Card className="shadow-xl rounded-lg overflow-hidden">
+          <CardHeader>
+            <div className="flex items-center gap-3 mb-2">
+              <Users className="w-8 h-8 text-accent flex-shrink-0" />
+              <CardTitle className="font-cormorant-garamond text-2xl md:text-3xl">Dinamiche ed Evoluzione dei Personaggi</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-6">
+             <div className="md:flex md:flex-row-reverse md:gap-6 items-start">
+                <div className="md:w-2/3 space-y-4">
+                  <div>
+                    <h3 className="font-bold font-lato text-xl mb-2 text-foreground">Il Sognatore e Nastenka: Un Incontro Trasformativo</h3>
+                    <p className="text-muted-foreground leading-relaxed text-base">
+                      L'incontro tra il Sognatore e Nastenka è il fulcro. Due anime solitarie creano un universo condiviso. Il Sognatore si apre, Nastenka trova conforto. La loro relazione si sviluppa rapidamente, culminando in una confessione e una scelta difficile.
+                    </p>
+                  </div>
+                  <Separator />
+                  <div>
+                    <h3 className="font-bold font-lato text-xl mb-2 text-foreground">Evoluzione del Sognatore</h3>
+                    <p className="text-muted-foreground leading-relaxed text-base">
+                      Il Sognatore inizia immerso nelle fantasie. L'incontro con Nastenka è un'irruzione della realtà. Sperimenta emozioni autentiche. Sebbene ritorni alla solitudine, il "momento di beatitudine" è un ricordo reale che lo arricchisce.
+                    </p>
+                  </div>
+                  <Separator />
+                  <div>
+                    <h3 className="font-bold font-lato text-xl mb-2 text-foreground">Evoluzione di Nastenka</h3>
+                    <p className="text-muted-foreground leading-relaxed text-base">
+                      Nastenka appare ansiosa ma speranzosa. Trova nel Sognatore un confidente. Sviluppa affetto, ma la sua lealtà al primo impegno e una visione pragmatica della felicità prevalgono nella sua scelta finale.
+                    </p>
+                  </div>
+                </div>
+                <div className="md:w-1/3 mt-6 md:mt-0">
+                  <Image 
+                  src="https://videos.openai.com/vg-assets/assets%2Ftask_01jvhbbej4eb5rjm7p7t7qx6sy%2F1747560356_img_0.webp?st=2025-05-18T08%3A19%3A32Z&se=2025-05-24T09%3A19%3A32Z&sks=b&skt=2025-05-18T08%3A19%3A32Z&ske=2025-05-24T09%3A19%3A32Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=%2FDq0N5JsOwsF5YOSckvQ4t16mQ7FtYZF8IoDyL19bYc%3D&az=oaivgprodscus" 
+                   
+                    alt="Immagine rappresentante interazione tra personaggi" 
+                    width={600} 
+                    height={400} 
+                    className="rounded-md shadow-md object-cover aspect-video"
+                    data-ai-hint="two people talking silhouette"
+                  />
+                </div>
+            </div>
+          </CardContent>
+        </Card>
 
-      {/* Contesto Storico e Culturale */}
-      <Card className="mb-12 shadow-lg">
-        <CardHeader>
-          <div className="flex items-center gap-3 mb-2">
-            <Landmark className="w-8 h-8 text-accent flex-shrink-0" />
-            <CardTitle className="font-cormorant-garamond text-3xl">Contesto Storico e Culturale</CardTitle>
-          </div>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div>
-            <h3 className="font-bold font-lato text-xl mb-2 text-foreground">San Pietroburgo: Città di Sogni e Contrasti</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              San Pietroburgo, negli anni '40 del XIX secolo, non è solo uno sfondo, ma un personaggio vivo nell'opera di Dostoevskij. Capitale imperiale, era una città di stridenti contrasti: la magnificenza dei palazzi e la desolazione dei quartieri poveri, la vivacità intellettuale e l'oppressione politica. Le "notti bianche", fenomeno atmosferico unico, trasformano la città in un palcoscenico quasi irreale, perfetto per la storia d'amore sognante e malinconica. I canali, i ponti, le strade scarsamente illuminate creano un'atmosfera che riflette lo stato d'animo del Sognatore. La città, con la sua vastità, può acuire il senso di solitudine, un tema che Dostoevskij esplorerà ripetutamente, influenzato dal Romanticismo europeo (in particolare Hoffmann e Schiller) e dalle nascenti idee del socialismo utopico discusse nel Circolo Petraševskij, che lo stesso Dostoevskij frequentava.
-            </p>
-          </div>
-          <Separator />
-          <div>
-            <h3 className="font-bold font-lato text-xl mb-2 text-foreground">L'Epoca Zarista e l'Individuo</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Il regno dello Zar Nicola I (1825-1855) fu caratterizzato da una forte repressione politica e da una rigida censura, ma fu anche un periodo di grande fermento intellettuale e dibattito sul futuro della Russia. Sebbene "Le Notti Bianche" non sia un'opera overtly politica, il senso di impotenza e di introspezione del Sognatore può essere letto anche come un riflesso di un'epoca in cui l'azione esterna era limitata, spingendo gli individui verso una più ricca, o più tormentata, vita interiore. Le convenzioni sociali erano rigide, specialmente per le donne come Nastenka, la cui vita era largamente definita dalla famiglia e dalle prospettive matrimoniali.
-            </p>
-          </div>
-           <Separator />
-          <div>
-            <h3 className="font-bold font-lato text-xl mb-2 text-foreground">"Le Notti Bianche" nell'Opera Dostoevskiana</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Quest'opera giovanile, con il suo sentimentalismo e la sua atmosfera poetica, prefigura molti dei temi che Dostoevskij svilupperà con maggiore complessità e profondità psicologica nei suoi grandi romanzi post-siberiani. L'alienazione dell'individuo, il conflitto tra sogno e realtà, le complessità dell'amore e della sofferenza, l'esplorazione dell'animo umano sono tutti elementi già presenti. Il Sognatore, con la sua tendenza all'autoanalisi e la sua esistenza marginale, è una figura embrionale che anticipa personaggi più complessi e tormentati come l'"Uomo del Sottosuolo". Tuttavia, a differenza di quest'ultimo, il Sognatore conserva una capacità di meraviglia e una dolcezza che rendono "Le Notti Bianche" una delle opere più liriche e accessibili di Dostoevskij.
-            </p>
-          </div>
-        </CardContent>
-      </Card>
+        {/* Contesto Storico e Culturale */}
+        <Card className="shadow-xl rounded-lg overflow-hidden">
+          <CardHeader>
+            <div className="flex items-center gap-3 mb-2">
+              <Landmark className="w-8 h-8 text-accent flex-shrink-0" />
+              <CardTitle className="font-cormorant-garamond text-2xl md:text-3xl">Contesto Storico e Culturale</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="md:flex md:gap-6 items-start">
+              <div className="md:w-2/3 space-y-4">
+                <div>
+                  <h3 className="font-bold font-lato text-xl mb-2 text-foreground">San Pietroburgo: Città di Sogni e Contrasti</h3>
+                  <p className="text-muted-foreground leading-relaxed text-base">
+                    San Pietroburgo negli anni '40 del XIX secolo è un personaggio vivo. Capitale imperiale di contrasti, le "notti bianche" trasformano la città in un palcoscenico irreale, riflettendo lo stato d'animo del Sognatore.
+                  </p>
+                </div>
+                <Separator />
+                <div>
+                  <h3 className="font-bold font-lato text-xl mb-2 text-foreground">L'Epoca Zarista e l'Individuo</h3>
+                  <p className="text-muted-foreground leading-relaxed text-base">
+                    Il regno dello Zar Nicola I fu caratterizzato da repressione e fermento intellettuale. L'introspezione del Sognatore può riflettere un'epoca di limitata azione esterna, spingendo verso una ricca vita interiore.
+                  </p>
+                </div>
+                <Separator />
+                <div>
+                  <h3 className="font-bold font-lato text-xl mb-2 text-foreground">"Le Notti Bianche" nell'Opera Dostoevskiana</h3>
+                  <p className="text-muted-foreground leading-relaxed text-base">
+                    Quest'opera giovanile prefigura temi dostoevskiani chiave: alienazione, sogno vs. realtà, amore, sofferenza. Il Sognatore anticipa figure più complesse come l'"Uomo del Sottosuolo", ma conserva una dolcezza unica.
+                  </p>
+                </div>
+              </div>
+              <div className="md:w-1/3 mt-6 md:mt-0">
+                 <Image 
+                      src="https://videos.openai.com/vg-assets/assets%2Ftask_01jttssk17edb9515ekr26gkbn%2F1746803753_img_2.webp?st=2025-05-18T08%3A19%3A20Z&se=2025-05-24T09%3A19%3A20Z&sks=b&skt=2025-05-18T08%3A19%3A20Z&ske=2025-05-24T09%3A19%3A20Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=fJ5NdISJpdRegSUwKSoEUf4VdzPu3bmNrPLrpo%2BUMyg%3D&az=oaivgprodscus"
+                    alt="Immagine storica di San Pietroburgo" 
+                    width={600} 
+                    height={400} 
+                    className="rounded-md shadow-md object-cover aspect-video"
+                    data-ai-hint="saint petersburg historical cityscape"
+                  />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-      {/* Considerazioni Finali */}
-      <Card className="shadow-lg">
-        <CardHeader>
-           <div className="flex items-center gap-3 mb-2">
-            <Palette className="w-8 h-8 text-accent flex-shrink-0" />
-            <CardTitle className="font-cormorant-garamond text-3xl">Un Momento di Eterna Bellezza</CardTitle>
-          </div>
-        </CardHeader>
-        <CardContent>
-           <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
-            "Le Notti Bianche" rimane una testimonianza della capacità di Dostoevskij di catturare la fragilità del cuore umano e la bellezza struggente degli incontri fugaci. È un invito a riflettere sulla natura della felicità, sulla potenza dei sogni e sulla traccia indelebile che anche un solo "momento di beatitudine" può lasciare nell'anima.
-           </p>
-        </CardContent>
-      </Card>
-
+        {/* Considerazioni Finali */}
+        <Card className="shadow-xl rounded-lg overflow-hidden">
+          <CardHeader>
+            <div className="flex items-center gap-3 mb-2">
+              <Palette className="w-8 h-8 text-accent flex-shrink-0" />
+              <CardTitle className="font-cormorant-garamond text-2xl md:text-3xl">Un Momento di Eterna Bellezza</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
+              "Le Notti Bianche" rimane una testimonianza della capacità di Dostoevskij di catturare la fragilità del cuore umano e la bellezza struggente degli incontri fugaci. È un invito a riflettere sulla natura della felicità, sulla potenza dei sogni e sulla traccia indelebile che anche un solo "momento di beatitudine" può lasciare nell'anima.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
